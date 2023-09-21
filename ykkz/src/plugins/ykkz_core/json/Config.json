@@ -1,0 +1,7 @@
+{
+  "Temperature": 1.6,
+  "Top_p": 0.7,
+  "Presence Penalty": 0.4,
+  "Frequency Penalty": 0.4,
+  "max_tokens": 150
+}

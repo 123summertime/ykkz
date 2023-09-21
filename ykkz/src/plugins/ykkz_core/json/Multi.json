@@ -1,0 +1,51 @@
+{
+  "FaceProbability": 0.5,
+  "Face": {
+    "happy": [
+      "~\\(≧▽≦)/~",
+      "ヾ(≧▽≦*)o",
+      "(*^▽^*)",
+      "o((>ω< ))o",
+      "(。・ω・。)"
+    ],
+    "unhappy": [
+      "QAQ",
+      "（︶^︶）",
+      "::>_<::"
+    ],
+    "excited": [
+      "~\\(≧▽≦)/~",
+      "╰(*°▽°*)╯",
+      "(☆▽☆)",
+      "o((>ω< ))o"
+    ],
+    "love": [
+      "ο(=•ω＜=)ρ⌒☆",
+      "o(*////▽////*)q",
+      "(❤️ ω ❤️)",
+      "( •̀ ω •́ )✧",
+      "(*/ω＼*))"
+    ],
+    "other": [
+      "（￣︶￣）↗　",
+      "^o^",
+      "(´･ω･`)",
+      "OwO"
+    ]
+  },
+  "PicsProbability": 1,
+  "Scheduler": {
+    "00:00": "睡觉"
+  },
+  "timePlusOrMinus": 3,
+  "ScheduledGroup": 0,
+  "voiceEnable": false,
+  "voiceSpeed": "-5%",
+  "voiceVolume": "+5%",
+  "vitsEnable": false,
+  "vitsPath": "",
+  "pthPath": "",
+  "configPath": "",
+  "speaker": "",
+  "trans": 0
+}
