@@ -6,10 +6,10 @@
 
 ## 安装前准备
 
-- **[python 3.8](https://www.python.org/downloads/release/python-380/)**
+- **[python 3.8](https://www.python.org/downloads/release/python-389/)**
 - **[JDK](https://www.oracle.com/java/technologies/downloads/#java17)**
 - **[RWKV-Runner](https://github.com/josStorer/RWKV-Runner)**
-- **[ffmpeg](https://ffmpeg.org/download.html)**
+- **[FFmpeg](https://ffmpeg.org/download.html)**
 
 ## 安装
 
@@ -71,7 +71,7 @@ ykkz_core作为nonebot的插件运行，负责处理用户的信息，RWKV的回
 | voiceVolume          | +5%   | str                  | 语音音量                                                             |
 | **vitsEnable**       | false | bool                 | `true`时使用语音模型的音色回复，`false`时使用edgetts的音色回复  <br/>为`true`时以下设置有效   |
 | **vitsPath**         | ""    | str                  | `vits`项目的绝对路径, `vits`的相对路径是`ykkz/ykkz/vits`                      |
-| **pthPath**          | ""    | str                  | `vits4.0`模型文件绝对路径                                                |                              
+| **pthPath**          | ""    | str                  | `vits4.0`模型文件绝对路径  |                              
 | **configPath**       | ""    | str                  | `vits`模型文件的`config.json`的绝对路径                                    |
 | **speaker**          | ""    | str                  | 该模型的说话人                                                          |
 | trans                | 0     | int                  | 音调变化 +8为提高8度                                                     |
