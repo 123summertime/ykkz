@@ -53,7 +53,7 @@ pip install -r requirements.txt
 双击`unidbg-fetch-qsign-1.1.9`下的`#start.bat`运行
 
 ## 配置so-vits-svc
-[下载](https://pan.baidu.com/s/1iQBQHjXXMiTMWYN2JO6jUw?pwd=1790)并放入`ykkz/vits/pretrain`下
+[下载](https://ibm.ent.box.com/s/z1wgl1stco8ffooyatzdwsqn2psd9lrr)并放入`ykkz/vits/pretrain`下
 
 ## 配置ykkz_core
 ykkz_core作为nonebot的插件运行，负责处理用户的信息，RWKV的回复及sovits的调用。
