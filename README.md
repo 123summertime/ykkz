@@ -17,18 +17,18 @@
 # 安装
 
 ## 克隆本项目
-`git clone`本项目并放置于虚拟环境中
+`git clone`或`download zip`本项目并放置于虚拟环境中
 
-以pycharm创建的venv为例
+以pycharm创建的venv为例,文件夹结构如下
 ```
-ykkz
- +---.idea
- +---venv
- +---unidbg-fetch-qsign-1.1.9
- +---ykkz
- +---go-cqhttp.bat
- +---config.yml
- +---requirements.txt
+yourProjectName
+     +---.idea
+     +---venv
+     +---unidbg-fetch-qsign-1.1.9
+     +---ykkz
+     +---go-cqhttp.bat
+     +---config.yml
+     +---requirements.txt
  ...
 ```
 
@@ -37,6 +37,8 @@ ykkz
 pip install -r requirements.txt
 ```
 > Microsoft Visual C++ 14.0 is required? pypi上下载对应的whl或下载visual studio解决。
+
+> 非Python3.8可能会报错
 
 ## 运行RWKV-Runner
 [RWKV-Runner文档](https://github.com/josStorer/RWKV-Runner/blob/master/README_ZH.md)
@@ -48,9 +50,11 @@ pip install -r requirements.txt
  > 不要使用常用QQ号
 
 ## 配置Qsign
-[下载](https://github.com/MrXiaoM/qsign/blob/mirai/txlib/8.9.68/android_pad.json)并重命名为`6.json`，放在`ykkz/data/version`下
+[下载](https://github.com/MrXiaoM/qsign/blob/mirai/txlib/8.9.68/android_pad.json)并重命名为`6.json`，放在`data/version`下
 
 双击`unidbg-fetch-qsign-1.1.9`下的`#start.bat`运行
+
+重启go-cqhttp.bat并登录
 
 ## 配置so-vits-svc
 [下载](https://ibm.ent.box.com/s/z1wgl1stco8ffooyatzdwsqn2psd9lrr)并放入`ykkz/vits/pretrain`下
