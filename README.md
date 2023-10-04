@@ -16,6 +16,8 @@
 
 # 安装
 
+**[视频教程](https://www.bilibili.com/video/BV1DB4y1f7v6)**
+
 ## 克隆本项目
 `git clone`或`download zip`本项目并放置于虚拟环境中
 
