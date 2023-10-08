@@ -114,7 +114,7 @@ ykkz_core作为nonebot的插件运行，负责处理用户的信息，RWKV的回
 确保RWKV-Runner已启动，go-cqhttp已登入
 ```powershell
 cd ykkz
-nb run
+nb run --reload
 ```
 在QQ上
 ```
