@@ -42,6 +42,8 @@ pip install -r requirements.txt
 
 > 非Python3.8可能会报错
 
+> Linux系统下不能安装的包就先跳过，接着再安装ykkz/vits/requirements.txt下的依赖
+
 ## 运行RWKV-Runner
 [RWKV-Runner文档](https://github.com/josStorer/RWKV-Runner/blob/master/README_ZH.md)
 
@@ -136,6 +138,22 @@ nb run --reload
 # 其它说明
 - `ykkz/src/plugins/ykkz_core/pics`下存储了对应心情时所发送的表情包，如需修改，直接向对应心情的文件夹增加或删减图片即可。
 - `ykkz/src/plugins/ykkz_core/tts`下存储了bot所发送的语音文件，每条语音会产生3个文件(.mp3 .wav .flac)
+
+# 作为nonebot插件使用
+- Step1: 安装`requirements.txt`下的依赖
+  > Linux系统下不能安装的包就先跳过，接着再安装ykkz/vits/requirements.txt下的依赖
+- Step2: 复制这个项目的`vits`文件夹到和`bot.py`同级的文件夹中
+``` powershell
+yourBotName
+    +----src
+    +----vits <-
+    +----bot.py
+    +----.env
+    +----pyproject.toml
+...
+```
+- Step3: 复制这个项目的`ykkz_core`文件夹至`src/plugins`文件夹下(nonebot的插件文件夹)
+- 还在写
 
 # 局限性
 - 仅支持在QQ群内对话且仅支持1个群
