@@ -1,7 +1,10 @@
 import os
 import re
+import sys
 import json
+import base64
 import random
+import asyncio
 import requests
 import edge_tts
 import subprocess
@@ -57,6 +60,9 @@ class Utils:
         if not data:
             data = Data_user
         data["prompt"] = Prompt
+        # print("+++++++++++++++++++++++++++++++++")
+        # print(Prompt)
+        # print("+++++++++++++++++++++++++++++++++")
         try:
             response = requests.post(URL, headers={"Content-Type": "application/json"}, data=json.dumps(data))
             if response.status_code == 200:
@@ -83,7 +89,7 @@ class Utils:
             splitted.append(sentenceTrim)
             suffix.append(emotion.choiceAFace())
         if emotion.choiceAPic():
-            pic = emotion.choiceAPic()
+            pic = Utils.cvt2base64(emotion.choiceAPic())
         return (splitted, pic, OriginalResponse, suffix)
 
     @staticmethod
@@ -118,6 +124,7 @@ class Utils:
     def showConfig():
         '''
         打印AI的参数
+        :return:
         '''
         global AIConfig, Multimedia
         reply = f"项目: 值 [取值范围]\n" \
@@ -176,6 +183,15 @@ class Utils:
         Data_sys["top_p"] = 0.5
         prompt = Context["instruction"] + f"\n\nUser:复述以下句子,可以稍微自由发挥:{sentence}\n\nBot:"
         return Utils.chatRequest(prompt, Data_sys)
+
+    @staticmethod
+    def cvt2base64(filePath):
+        '''
+        发送表情包/语音的base64
+        '''
+        with open(filePath, "rb") as r:
+            b64 = base64.b64encode(r.read()).decode('utf-8')
+            return b64
 
 
 class Emotion:
@@ -262,9 +278,12 @@ class Voice:
                 filePath = os.path.join(PATH + '/tts', fileName)
                 if Multimedia["vitsEnable"]:
                     filePath = await Voice.customVoice(filePath, fileName)
+                    await asyncio.sleep(1)
                 nameList.append(filePath)
             except:
                 pass
+        for i in range(len(nameList)):
+            nameList[i] = Utils.cvt2base64(nameList[i])
         return nameList
 
     @staticmethod

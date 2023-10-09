@@ -1,17 +1,18 @@
 import os
+import re
 import json
 import random
 import asyncio
+import requests
 import datetime
-from .utils import Utils, Scheduled, Voice
+from .utils import Utils, Emotion, Scheduled, Voice
 from nonebot import on_command, on_fullmatch, get_bot, require, get_driver
 from nonebot.rule import to_me
-from nonebot.plugin import PluginMetadata
-from nonebot.params import EventPlainText
-from nonebot.adapters.onebot.v11 import Bot
+from nonebot.params import ArgPlainText, EventPlainText
+from nonebot.adapters.onebot.v11 import GroupMessageEvent, Bot
 from nonebot.adapters.onebot.v11.message import Message
+from nonebot.plugin import PluginMetadata
 from .config import Config
-
 require("nonebot_plugin_apscheduler")
 from nonebot_plugin_apscheduler import scheduler
 
@@ -31,7 +32,7 @@ PATH = os.path.dirname(__file__)
 Context, Multimedia = None, None
 ContextPATH, MultimediaPATH = (PATH + "/json/Context.json",
                                PATH + "/json/Multi.json")
- 
+
 with open(ContextPATH, "r", encoding='utf-8') as r:
     Context = json.load(r)
 with open(MultimediaPATH, "r", encoding='utf-8') as r:
@@ -64,7 +65,7 @@ async def scheduledJobsSender(actionTime):
             for i in voiceNames:
                 await bot.call_api("send_group_msg",
                                    group_id=Multimedia["ScheduledGroup"],
-                                   message=f"[CQ:record,file=file:///{i}]")
+                                   message=f"[CQ:record,file=base64://{i}]")
                 await asyncio.sleep(random.randint(4, 8))
         else:
             for i in range(len(AIReply)):
@@ -75,7 +76,7 @@ async def scheduledJobsSender(actionTime):
         if pic:
             await bot.call_api("send_group_msg",
                             group_id=Multimedia["ScheduledGroup"],
-                            message=f"[CQ:image,file=file:///{pic}]")
+                            message=f"[CQ:image,file=base64://{pic}]")
     except:
         raise ValueError("Multi.json的ScheduledGroup群号不正确")
 
@@ -133,14 +134,14 @@ async def chatCore(msg:str=EventPlainText()):
         voiceNames = await Voice.text2voice(AIReply)
         for i in voiceNames:
             MessageID.append(
-                await chat_Core.send(Message(f"[CQ:record,file=file:///{i}]")))
+                await chat_Core.send(Message(f"[CQ:record,file=base64://{i}]")))
             await asyncio.sleep(random.randint(4, 8))
     else:
         for i in range(len(AIReply)):
             MessageID.append(await chat_Core.send(Message(AIReply[i] + suffix[i])))
             await asyncio.sleep(random.randint(6, 12))
     if pic:
-        MessageID.append(await chat_Core.send(Message(f"[CQ:image,file=file:///{pic}]")))
+        MessageID.append(await chat_Core.send(Message(f"[CQ:image,file=base64://{pic}]")))
     await chat_Core.finish()
 
 
@@ -170,14 +171,14 @@ async def commandRE(bot: Bot):
         voiceNames = await Voice.text2voice(AIReply)
         for i in voiceNames:
             MessageID.append(
-                await command_RE.send(Message(f"[CQ:record,file=file:///{i}]")))
+                await command_RE.send(Message(f"[CQ:record,file=base64://{i}]")))
             await asyncio.sleep(random.randint(4, 8))
     else:
         for i in range(len(AIReply)):
             MessageID.append(await command_RE.send(Message(AIReply[i] + suffix[i])))
             await asyncio.sleep(random.randint(6, 12))
     if pic:
-        MessageID.append(await command_RE.send(Message(f"[CQ:image,file=file:///{pic}]")))
+        MessageID.append(await command_RE.send(Message(f"[CQ:image,file=base64://{pic}]")))
     await command_RE.finish()
 
 
@@ -309,14 +310,14 @@ async def commandPass(bot: Bot, msg:str=EventPlainText()):
     if Multimedia["voiceEnable"]:
         voiceNames = await Voice.text2voice(AIReply)
         for i in voiceNames:
-            MessageID.append(await command_Pass.send(Message(f"[CQ:record,file=file:///{i}]")))
+            MessageID.append(await command_Pass.send(Message(f"[CQ:record,file=base64://{i}]")))
             await asyncio.sleep(random.randint(4, 8))
     else:
         for i in range(len(AIReply)):
             MessageID.append(await command_Pass.send(Message(AIReply[i] + suffix[i])))
             await asyncio.sleep(random.randint(6, 12))
     if pic:
-        MessageID.append(await command_Pass.send(Message(f"[CQ:image,file=file:///{pic}]")))
+        MessageID.append(await command_Pass.send(Message(f"[CQ:image,file=base64://{pic}]")))
     await command_Pass.finish()
 
 
