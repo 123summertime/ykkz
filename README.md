@@ -143,7 +143,7 @@ nb run --reload
 - Step1: 安装`requirements.txt`下的依赖
   > Linux系统下不能安装的包就先跳过，接着再安装ykkz/vits/requirements.txt下的依赖
 - Step2: 复制这个项目的`vits`文件夹到和`bot.py`同级的文件夹中
-``` powershell
+```powershell
 yourBotName
     +----src
     +----vits <-
@@ -153,7 +153,18 @@ yourBotName
 ...
 ```
 - Step3: 复制这个项目的`ykkz_core`文件夹至`src/plugins`文件夹下(nonebot的插件文件夹)
-- 还在写
+```powershell
+yourBotName
+    +--src
+        +--plugins
+            +--ykkz_core <-  
+```
+- Step4: 导入插件
+> 导入方法可以查看[文档](https://nonebot.dev/docs/tutorial/create-plugin)
+
+- Step5: 上面的安装过程除了`安装依赖`，`配置go-cqhttp`和`配置qSign`不用做了，其它的还是要做的
+
+nb run后看到这一句`Succeeded to load plugin "ykkz_core" from xxx`就是导入成功了
 
 # 局限性
 - 仅支持在QQ群内对话且仅支持1个群
