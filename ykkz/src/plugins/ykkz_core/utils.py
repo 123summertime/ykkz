@@ -51,14 +51,12 @@ Data_sys = {
 # --- Classes ---
 class Utils:
     @staticmethod
-    def chatRequest(Prompt, data=None):
+    def chatRequest(Prompt, data=Data_user):
         '''
         发送HTTP请求，获取RWKV的回复
         '''
         global Data_user
 
-        if not data:
-            data = Data_user
         data["prompt"] = Prompt
         # print("+++++++++++++++++++++++++++++++++")
         # print(Prompt)

@@ -6,13 +6,14 @@ import asyncio
 import requests
 import datetime
 from .utils import Utils, Emotion, Scheduled, Voice
+from .config import Config
 from nonebot import on_command, on_fullmatch, get_bot, require, get_driver
 from nonebot.rule import to_me
+from nonebot.plugin import PluginMetadata
 from nonebot.params import ArgPlainText, EventPlainText
+from nonebot.adapters import Event
 from nonebot.adapters.onebot.v11 import GroupMessageEvent, Bot
 from nonebot.adapters.onebot.v11.message import Message
-from nonebot.plugin import PluginMetadata
-from .config import Config
 require("nonebot_plugin_apscheduler")
 from nonebot_plugin_apscheduler import scheduler
 
@@ -43,6 +44,7 @@ CurrentPrompt = Prompt
 OriginalResponse = ""
 MessageID = []
 ScheduledJobs = []
+blacklistGroup = set(Multimedia["blacklistGroup"])
 Driver = get_driver()
 
 
@@ -109,7 +111,14 @@ async def randomScheduledTime():
 
 
 # --- Matcher ---
-chat_Core = on_command("", rule=to_me(), priority=10, block=True)
+async def authentication(event: Event):
+    groupID = event.group_id
+    if groupID in blacklistGroup:
+        return False
+    return True
+
+
+chat_Core = on_command("", permission=authentication, rule=to_me(), priority=10, block=True)
 @chat_Core.handle()
 async def chatCore(msg:str=EventPlainText()):
     '''
@@ -145,7 +154,7 @@ async def chatCore(msg:str=EventPlainText()):
     await chat_Core.finish()
 
 
-command_RE = on_fullmatch("RE", rule=to_me(), ignorecase=True, priority=5, block=True)
+command_RE = on_fullmatch("RE", permission=authentication, rule=to_me(), ignorecase=True, priority=5, block=True)
 @command_RE.handle()
 async def commandRE(bot: Bot):
     '''
@@ -182,7 +191,7 @@ async def commandRE(bot: Bot):
     await command_RE.finish()
 
 
-command_DEL = on_fullmatch("DEL", rule=to_me(), ignorecase=True, priority=5, block=True)
+command_DEL = on_fullmatch("DEL", permission=authentication, rule=to_me(), ignorecase=True, priority=5, block=True)
 @command_DEL.handle()
 async def commandDEL(bot: Bot):
     '''
@@ -205,7 +214,7 @@ async def commandDEL(bot: Bot):
     await command_DEL.finish()
 
 
-command_ShowConfig = on_fullmatch("SC", rule=to_me(), ignorecase=True, priority=5, block=True)
+command_ShowConfig = on_fullmatch("SC", permission=authentication, rule=to_me(), ignorecase=True, priority=5, block=True)
 @command_ShowConfig.handle()
 async def commandShowConfig():
     '''
@@ -217,7 +226,7 @@ async def commandShowConfig():
     await command_ShowConfig.finish(Message(Utils.showConfig()))
 
 
-command_EditConfig = on_command("EC ", aliases={"ec ", "Ec ", "eC "}, rule=to_me(), priority=5, block=True)
+command_EditConfig = on_command("EC ", permission=authentication, aliases={"ec ", "Ec ", "eC "}, rule=to_me(), priority=5, block=True)
 @command_EditConfig.handle()
 async def commandEditConfig(msg:str=EventPlainText()):
     '''
@@ -238,7 +247,7 @@ async def commandEditConfig(msg:str=EventPlainText()):
         await command_EditConfig.finish(Message("修改失败"))
 
 
-command_EditInstruction = on_command("EI ", aliases={"ei ", "Ei ", "eI "}, rule=to_me(), priority=5, block=True)
+command_EditInstruction = on_command("EI ", permission=authentication, aliases={"ei ", "Ei ", "eI "}, rule=to_me(), priority=5, block=True)
 @command_EditInstruction.handle()
 async def commandEditInstruction(msg:str=EventPlainText()):
     '''
@@ -261,7 +270,7 @@ async def commandEditInstruction(msg:str=EventPlainText()):
         await command_EditInstruction.finish(Message("修改失败"))
 
 
-command_ClearContext = on_fullmatch("CC", ignorecase=True, rule=to_me(), priority=5, block=True)
+command_ClearContext = on_fullmatch("CC", permission=authentication, ignorecase=True, rule=to_me(), priority=5, block=True)
 @command_ClearContext.handle()
 async def commandClearContext():
     '''
@@ -281,7 +290,7 @@ async def commandClearContext():
         await command_ClearContext.finish(Message("清除失败"))
 
 
-command_Pass = on_command("PS ", aliases={"Pass ", "ps ", "Ps ", "PASS "}, rule=to_me(), priority=5, block=True)
+command_Pass = on_command("PS ", permission=authentication, aliases={"Pass ", "ps ", "Ps ", "PASS "}, rule=to_me(), priority=5, block=True)
 @command_Pass.handle()
 async def commandPass(bot: Bot, msg:str=EventPlainText()):
     '''
@@ -321,7 +330,7 @@ async def commandPass(bot: Bot, msg:str=EventPlainText()):
     await command_Pass.finish()
 
 
-command_Help = on_command("Help", aliases={"help", "HELP"}, rule=to_me(), priority=5, block=True)
+command_Help = on_command("Help", permission=authentication, aliases={"help", "HELP"}, rule=to_me(), priority=5, block=True)
 @command_Help.handle()
 async def commandHelp():
     '''

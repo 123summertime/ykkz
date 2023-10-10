@@ -39,6 +39,7 @@
   },
   "timePlusOrMinus": 3,
   "ScheduledGroup": 0,
+  "blacklistGroup": [],
   "voiceEnable": false,
   "voiceSpeed": "-5%",
   "voiceVolume": "+5%",

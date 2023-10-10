@@ -93,23 +93,24 @@ ykkz_core作为nonebot的插件运行，负责处理用户的信息，RWKV的回
 
 `ykkz/src/plugins/ykkz_core/json/Multi.json`
 
-|          键           |    默认值     |         数据类型         |                                 功能                                 |
-|:--------------------:|:----------:|:--------------------:|:------------------------------------------------------------------:|
-|   FaceProbability    |    0.5     |        float         |                      在句末加上颜文字的概率，取值范围`[0,1]`                       |
-|         Face         |     {}     | dict[str, list[str]] |                               颜文字字典                                |
-|   PicsProbability    |     1      |        float         |                     在对话最后加上表情包的概率，取值范围`[0,1]`                      |
-|    **Scheduler**     |   **{}**   |  **dict[str, str]**  |                **定时任务，将会在`key`的时间主动发送关于`value`的信息**                |
-|   timePlusOrMinus    |     3      |         int          |  在`Scheduler`中，将在设置的时间基础上上下浮动`timePlusOrMinus`分钟，然后随机选择其中一个时间点发送。  |
-| _**ScheduledGroup**_ |  _**0**_   |      _**int**_       |              _**在`Scheduler`中计划发送的信息发送向哪个群，填入QQ群号**_               |
-|   **voiceEnable**    | **false**  |         bool         |                  **`true`时开启语音回复，`false`时使用文字回复**                  |
-|      voiceSpeed      |    -5%     |         str          |                                 语速                                 |
-|     voiceVolume      |    +5%     |         str          |                                语音音量                                |
-|    **vitsEnable**    | **false**  |       **bool**       | **`true`时使用语音模型的音色回复，`false`时使用edgetts的音色回复  <br/>为`true`时以下设置有效** |
-|     **vitsPath**     |   **""**   |       **str**        |             **`vits`项目的绝对路径, `vits`的相对路径是`ykkz/vits`**             |
-|     **pthPath**      |   **""**   |       **str**        |                       **`vits4.0`模型文件绝对路径**                        |                              
-|    **configPath**    |   **""**   |       **str**        |                 **`vits`模型文件的`config.json`的绝对路径**                  |
-|     **speaker**      |   **""**   |       **str**        |                            **该模型的说话人**                             |
-|        trans         |     0      |         int          |                                 音调                                 |
+|           键           |    默认值     |         数据类型         |                                 功能                                 |
+|:---------------------:|:----------:|:--------------------:|:------------------------------------------------------------------:|
+|    FaceProbability    |    0.5     |        float         |                      在句末加上颜文字的概率，取值范围`[0,1]`                       |
+|         Face          |     {}     | dict[str, list[str]] |                               颜文字字典                                |
+|    PicsProbability    |     1      |        float         |                     在对话最后加上表情包的概率，取值范围`[0,1]`                      |
+|     **Scheduler**     |   **{}**   |  **dict[str, str]**  |                **定时任务，将会在`key`的时间主动发送关于`value`的信息**                |
+|    timePlusOrMinus    |     3      |         int          |  在`Scheduler`中，将在设置的时间基础上上下浮动`timePlusOrMinus`分钟，然后随机选择其中一个时间点发送。  |
+| _**ScheduledGroup**_  |  _**0**_   |      _**int**_       |              _**在`Scheduler`中计划发送的信息发送向哪个群，填入QQ群号**_               |
+| blacklistGroup        |    []      |      list[int]       |                            在黑名单中的群不会回复                             |
+|    **voiceEnable**    | **false**  |         bool         |                  **`true`时开启语音回复，`false`时使用文字回复**                  |
+|      voiceSpeed       |    -5%     |         str          |                                 语速                                 |
+|      voiceVolume      |    +5%     |         str          |                                语音音量                                |
+|    **vitsEnable**     | **false**  |       **bool**       | **`true`时使用语音模型的音色回复，`false`时使用edgetts的音色回复  <br/>为`true`时以下设置有效** |
+|     **vitsPath**      |   **""**   |       **str**        |             **`vits`项目的绝对路径, `vits`的相对路径是`ykkz/vits`**             |
+|      **pthPath**      |   **""**   |       **str**        |                       **`vits4.0`模型文件绝对路径**                        |                              
+|    **configPath**     |   **""**   |       **str**        |                 **`vits`模型文件的`config.json`的绝对路径**                  |
+|      **speaker**      |   **""**   |       **str**        |                            **该模型的说话人**                             |
+|         trans         |     0      |         int          |                                 音调                                 |
 
 
 ## 启动及使用
