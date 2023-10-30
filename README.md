@@ -38,7 +38,7 @@ yourProjectName
 ```powershell
 pip install -r requirements.txt
 ```
-> Microsoft Visual C++ 14.0 is required? pypi上下载对应的whl或下载visual studio解决。
+> 下载fairseq时报错？下载visual studio解决。[参照这个](https://stackoverflow.com/questions/64261546/how-to-solve-error-microsoft-visual-c-14-0-or-greater-is-required-when-inst)。
 
 > 非Python3.8可能会报错
 
